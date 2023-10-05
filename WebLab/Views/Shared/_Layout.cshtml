@@ -17,35 +17,27 @@
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <!-- меню сайта -->
                 <a class="navbar-brand" asp-action="Index" asp-controller="Home">Яцевич Ангелина</a>
+
+                
+                
+                <a class="navbar-brand" asp-action="Index" asp-controller="Home">WebLabsV03</a>
                 <div class="navbar-nav">
+                    @await Component.InvokeAsync("Menu")
+                </div>
+
+
+
+                @*<div class="navbar-nav">
                     <a class="nav-item nav-link active" asp-action="Index" asp-controller="Home">Лб 1</a>
                     <a class="nav-item nav-link" asp-action="Index" asp-controller="Product">Каталог</a>
                     <a class="nav-item nav-link" asp-area="Admin" asp-page="/Index">Администрирование</a>
-                </div>
+                </div>*@
+
+
                 <!-- меню сайта - конец -->
                 <!-- Информация пользователя -->
                 <!--ms-->
-                <a asp-action="Cart" asp-controller="Index" class="navbar-text ml-auto">
-                    00,0 руб <i class="fas fa-shopping-cart nav-color"></i> (0)
-                </a>
-                <div class="dropdown ml-4 nav-color">
-                    <div class="dropdown-toggle" id="dropdownMenuButton"
-                         data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false">
-                        <img src="~/images/6.jpg" width="30"
-                             alt="User" class="rounded" />
-                    </div>
-                    <div class="dropdown-menu"
-                         aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item-text">
-                            <img src="~/images/6.jpg" width="50" alt="User" class="rounded" />
-                            user@mail.ru
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-action="Product" asp-controller="UserProducts">Мои товары</a>
-                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Log off</a>
-                    </div>
-                </div>
+               <partial name="_UserPartial" />
                 <!-- Информация пользователя - конец -->
             </nav>
         </div>
