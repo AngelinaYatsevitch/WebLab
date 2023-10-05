@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
-
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebLab</title>
@@ -17,26 +15,13 @@
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <!-- меню сайта -->
                 <a class="navbar-brand" asp-action="Index" asp-controller="Home">Яцевич Ангелина</a>
-
-                
-                
                 <a class="navbar-brand" asp-action="Index" asp-controller="Home">WebLabsV03</a>
                 <div class="navbar-nav">
                     @await Component.InvokeAsync("Menu")
                 </div>
-
-
-
-                @*<div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-action="Index" asp-controller="Home">Лб 1</a>
-                    <a class="nav-item nav-link" asp-action="Index" asp-controller="Product">Каталог</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asp-page="/Index">Администрирование</a>
-                </div>*@
-
-
                 <!-- меню сайта - конец -->
+
                 <!-- Информация пользователя -->
-                <!--ms-->
                <partial name="_UserPartial" />
                 <!-- Информация пользователя - конец -->
             </nav>
