@@ -24,6 +24,12 @@ namespace WebLab
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -46,10 +52,11 @@ namespace WebLab
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        
-        
-        
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context,
+                                UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +76,10 @@ namespace WebLab
 
             app.UseAuthentication();
             app.UseAuthorization();
+            DbInitializer.Seed(context, userManager, roleManager)
+            .GetAwaiter()
+            .GetResult();
+
 
             app.UseEndpoints(endpoints =>
             {
