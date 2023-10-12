@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebLab.Entities;
+using WebLab.Extensions;
 using WebLab.Models;
 
 namespace WebLab.Controllers
@@ -13,11 +14,14 @@ namespace WebLab.Controllers
         public List<Dish> _dishes;
         List<DishGroup> _dishGroups;
         int _pageSize;
+        
         public ProductController()
         {
             _pageSize = 3;
             SetupData();
         }
+        [Route("Catalog")]
+        [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
             var dishesFiltered = _dishes
@@ -26,18 +30,26 @@ namespace WebLab.Controllers
             ViewData["Groups"] = _dishGroups;
             // Получить id текущей группы и поместить в TempData
             ViewData["CurrentGroup"] = group ?? 0;
-            //var items = _dishes
-            //.Skip((pageNo - 1) * _pageSize)
-            //.Take(_pageSize)
-            //.ToList();
-            //return View(items);
             return View(ListViewModel<Dish>.GetModel(dishesFiltered,
             pageNo, _pageSize));
+
+            var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
+            if (Request.Headers["x-requested-with"]
+            .ToString().ToLower().Equals("xmlhttprequest"))
+                return PartialView("_listpartial", model);
+            if (Request.IsAjaxRequest())
+                return PartialView("_listpartial", model);
+            else
+                return View(model);
+
+
+
         }
             /// <summary>
             /// Инициализация списков
             /// </summary>
-            private void SetupData()
+            
+        private void SetupData()
         {
             _dishGroups = new List<DishGroup>
             {
@@ -81,7 +93,7 @@ namespace WebLab.Controllers
                 Calories =160, DishGroupId=3, Image="n3.jpg" },
 
 
-                new Dish {DishId = 10, DishName="Яишница",
+                new Dish {DishId = 10, DishName="Яичница",
                 Description="С овощами",
                 Calories =200, DishGroupId=4, Image="os1.jpg" },
                 new Dish { DishId = 11, DishName="Лаваш",

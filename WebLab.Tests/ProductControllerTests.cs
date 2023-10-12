@@ -5,14 +5,26 @@ using WebLab.Entities;
 using NUnit;
 using NUnit.Framework;
 using Xunit;
+using Moq;
+using Microsoft.AspNetCore.Http;
 
 namespace WebLab.Tests
 {
 
     public class TestData
     {
+
         public static List<Dish> GetDishesList()
         {
+            // Контекст контроллера
+            var controllerContext = new ControllerContext();
+            // Макет HttpContext
+            var moqHttpContext = new Mock<HttpContext>();
+            moqHttpContext.Setup(c => c.Request.Headers)
+            .Returns(new HeaderDictionary());
+            controllerContext.HttpContext = moqHttpContext.Object;
+            var controller = new ProductController()
+            { ControllerContext = controllerContext };
             return new List<Dish>
             {
             new Dish{ DishId=1, DishGroupId=1},
