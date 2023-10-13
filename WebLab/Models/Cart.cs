@@ -8,7 +8,7 @@ namespace WebLab.Models
 {
     public class Cart
     {
-        public virtual Dictionary<int, CartItem> Items { get; set; }
+        public Dictionary<int, CartItem> Items { get; set; }
         public Cart()
         {
             Items = new Dictionary<int, CartItem>();
@@ -16,7 +16,7 @@ namespace WebLab.Models
         /// <summary>
         /// Количество объектов в корзине
         /// </summary>
-        public virtual int Count
+        public int Count
         {
             get
             {
@@ -26,7 +26,7 @@ namespace WebLab.Models
         /// <summary>
         /// Количество калорий
         /// </summary>
-        public virtual int Calories
+        public int Calories
         {
             get
             {
