@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\lib\bs-custom-file-input\dist\" />
   </ItemGroup>
 
 </Project>

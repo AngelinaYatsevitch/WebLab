@@ -49,8 +49,8 @@ namespace WebLab.Tests
                 var model = result?.Model as List<Dish>;
                 // Assert
                 Assert.NotNull(model);
-                Assert.Equal(qty, model.Count);
-                Assert.Equal(id, model[0].DishId);
+                Assert.Equals(qty, model.Count);
+                Assert.Equals(id, model[0].DishId);
             }
             // удалить базу данных из памяти
             using (var context = new ApplicationDbContext(_options))
@@ -83,8 +83,8 @@ namespace WebLab.Tests
                 var result = controller.Index(2) as ViewResult;
                 var model = result.Model as List<Dish>;
                 // assert
-                Assert.Equal(2, model.Count);
-                Assert.Equal(context.Dishes
+                Assert.Equals(2, model.Count);
+                Assert.Equals(context.Dishes
                 .ToArrayAsync()
                 .GetAwaiter()
                 .GetResult()[2], model[0], comparer);
