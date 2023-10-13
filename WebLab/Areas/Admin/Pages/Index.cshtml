@@ -9,7 +9,7 @@
 
 <p class="mt-2">
     <a asp-page="Create" class="btn btn-outline-info">
-        <span class="fa fa-plus-circle"> Добавить</span>
+        <span class="fa fa-plus-circle">Добавить</span>
     </a>
 </p>
 <table class="table">
@@ -19,10 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Dish[0].DishName)
             </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.Dish[0].DishName)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Dish[0].Description)
             </th>
@@ -30,12 +27,9 @@
                 @Html.DisplayNameFor(model => model.Dish[0].Calories)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dish[0].Image)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Dish[0].Group)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -46,9 +40,6 @@
                 <td>
                     <img src="~/Images/@item.Image" alt="NoImage" width="50" />
                 </td>
-
-
-
                 <td>
                     @Html.DisplayFor(modelItem => item.DishName)
                 </td>
@@ -57,9 +48,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Calories)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Group.DishGroupId)

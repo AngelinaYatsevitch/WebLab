@@ -8,7 +8,7 @@ namespace WebLab.Models
 {
     public class Cart
     {
-        public Dictionary<int, CartItem> Items { get; set; }
+        public virtual Dictionary<int, CartItem> Items { get; set; }
         public Cart()
         {
             Items = new Dictionary<int, CartItem>();
@@ -16,7 +16,7 @@ namespace WebLab.Models
         /// <summary>
         /// Количество объектов в корзине
         /// </summary>
-        public int Count
+        public virtual int Count
         {
             get
             {
@@ -26,7 +26,7 @@ namespace WebLab.Models
         /// <summary>
         /// Количество калорий
         /// </summary>
-        public int Calories
+        public virtual int Calories
         {
             get
             {
@@ -37,7 +37,7 @@ namespace WebLab.Models
         /// Добавление в корзину
         /// </summary>
         /// <param name="dish">добавляемый объект</param>
-        public void AddToCart(Dish dish)
+        public virtual void AddToCart(Dish dish)
         {
             // если объект есть в корзине
             // то увеличить количество
@@ -55,14 +55,14 @@ namespace WebLab.Models
         /// Удалить объект из корзины
         /// </summary>
         /// <param name="id">id удаляемого объекта</param>
-        public void RemoveFromCart(int id)
+        public virtual void RemoveFromCart(int id)
         {
             Items.Remove(id);
         }
         /// <summary>
         /// Очистить корзину
         /// </summary>
-        public void ClearAll()
+        public virtual void ClearAll()
         {
             Items.Clear();
         }
