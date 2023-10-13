@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WebLab
 {
@@ -15,6 +16,12 @@ namespace WebLab
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+            .ConfigureLogging(lp =>
+            {
+                lp.ClearProviders();
+                lp.AddFilter("Microsoft", LogLevel.None);
+            }
+         );
     }
 }

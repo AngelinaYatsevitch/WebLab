@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using WebLab.Models;
 using WebLab.Services;
+using Microsoft.Extensions.Logging;
+using WebLab.Extensions;
 
 namespace WebLab
 {
@@ -68,8 +70,10 @@ namespace WebLab
 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context,
-                                UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+                                UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+                                ILoggerFactory logger)
         {
+            logger.AddFile("Logs/log-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -88,6 +92,7 @@ namespace WebLab
 
             app.UseAuthentication();
             app.UseSession();
+            app.UseFileLogging();
             app.UseAuthorization();
             DbInitializer.Seed(context, userManager, roleManager)
             .GetAwaiter()
