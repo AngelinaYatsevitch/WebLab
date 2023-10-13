@@ -29,6 +29,9 @@ namespace WebLab.Data
                 await roleManager.CreateAsync(roleAdmin);
             }
 
+           
+            
+            
             // проверка наличия пользователей
             if (!context.Users.Any())
             {
@@ -56,6 +59,78 @@ namespace WebLab.Data
                 admin = await userManager.FindByEmailAsync("admin@mail.ru");
                 await userManager.AddToRoleAsync(admin, "admin");
             }
+
+            //проверка наличия групп объектов
+            if (!context.DishGroups.Any())
+            {
+                context.DishGroups.AddRange(
+                new List<DishGroup>
+                {
+                new DishGroup {GroupName="Бутерброды"},
+                new DishGroup {GroupName="Десерты"},
+                new DishGroup {GroupName="Напитки"},
+                new DishGroup {GroupName="Основные блюда"},
+                new DishGroup {GroupName="Завтраки"}
+                });
+                await context.SaveChangesAsync();
+            }
+            // проверка наличия объектов
+            if (!context.Dishes.Any())
+            {
+                context.Dishes.AddRange(
+                new List<Dish>
+                {
+                new Dish {DishName="Бутерброды постные",
+                Description="Просто бутерброды с яйцом",
+                Calories =200, DishGroupId=1, Image="b1.jpg" },
+                new Dish {DishName="Бутерброды сладкие",
+                Description="С бананом и черникой",
+                Calories =330, DishGroupId=1, Image="b2.jpg" },
+                new Dish {DishName="Классический бутерброд",
+                Description="Хлеб - 80%, Масло - 20%",
+                Calories =160, DishGroupId=1, Image="b3.jpg" },
+
+
+                new Dish {DishName="Круасан",
+                Description="Хорошо к чаю",
+                Calories =200, DishGroupId=2, Image="d1.jpg" },
+                new Dish {DishName="Венские вафли",
+                Description="С шариком мороженого",
+                Calories =330, DishGroupId=2, Image="d2.jpg" },
+                new Dish {DishName="Пончики",
+                Description="С шоколодом",
+                Calories =160, DishGroupId=2, Image="d3.jpg" },
+
+                new Dish {DishName="Кофе",
+                Description="Эспрессо",
+                Calories =200, DishGroupId=3, Image="n1.jpg" },
+                new Dish {DishName="Сок",
+                Description="Апельсиновый",
+                Calories =330, DishGroupId=3, Image="n2.jpg" },
+                new Dish {DishName="Компот",
+                Description="Клубничный",
+                Calories =160, DishGroupId=3, Image="n3.jpg" },
+
+
+                new Dish {DishName="Яичница",
+                Description="С овощами",
+                Calories =200, DishGroupId=4, Image="os1.jpg" },
+                new Dish {DishName="Лаваш",
+                Description="С овощами",
+                Calories =330, DishGroupId=4, Image="os2.jpg" },
+
+
+
+                new Dish {DishName="Творог",
+                Description="С клубникой",
+                Calories =200, DishGroupId=5, Image="z1.jpg" },
+                new Dish {DishName="Хлопья",
+                Description="Кукурузные",
+                Calories =330, DishGroupId=5, Image="z2.jpg" },
+                });
+                await context.SaveChangesAsync();
+            }
+
         }
     }
 }
