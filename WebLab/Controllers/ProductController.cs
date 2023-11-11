@@ -54,8 +54,7 @@ namespace WebLab.Controllers
             ViewData["Groups"] = _context.DishGroups;
             // Получить id текущей группы и поместить в TempData
             ViewData["CurrentGroup"] = group ?? 0;
-            return View(ListViewModel<Dish>.GetModel(dishesFiltered,
-            pageNo, _pageSize));
+           
 
             var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
             if (Request.Headers["x-requested-with"]
@@ -66,7 +65,8 @@ namespace WebLab.Controllers
             else
                 return View(model);
 
-
+ return View(ListViewModel<Dish>.GetModel(dishesFiltered,
+            pageNo, _pageSize));
 
         }
             /// <summary>

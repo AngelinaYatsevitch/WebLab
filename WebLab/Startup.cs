@@ -13,6 +13,7 @@ using WebLab.Models;
 using WebLab.Services;
 using Microsoft.Extensions.Logging;
 using WebLab.Extensions;
+using Microsoft.Net.Http.Headers;
 
 namespace WebLab
 {
@@ -97,8 +98,11 @@ namespace WebLab
             DbInitializer.Seed(context, userManager, roleManager)
             .GetAwaiter()
             .GetResult();
+            app.UseCors(policy =>
+                policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .WithHeaders(HeaderNames.ContentType));
 
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
