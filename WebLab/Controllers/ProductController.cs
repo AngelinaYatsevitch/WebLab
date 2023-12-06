@@ -33,14 +33,14 @@ namespace WebLab.Controllers
             return View(ListViewModel<Dish>.GetModel(dishesFiltered,
             pageNo, _pageSize));
 
-            var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
-            if (Request.Headers["x-requested-with"]
-            .ToString().ToLower().Equals("xmlhttprequest"))
-                return PartialView("_listpartial", model);
-            if (Request.IsAjaxRequest())
-                return PartialView("_listpartial", model);
-            else
-                return View(model);
+            //var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
+            //if (Request.Headers["x-requested-with"]
+            //.ToString().ToLower().Equals("xmlhttprequest"))
+            //    return PartialView("_listpartial", model);
+            //if (Request.IsAjaxRequest())
+            //    return PartialView("_listpartial", model);
+            //else
+            //    return View(model);
 
 
 
