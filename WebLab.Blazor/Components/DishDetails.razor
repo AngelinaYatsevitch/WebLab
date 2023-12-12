@@ -4,7 +4,8 @@
 {
     <img src="@imageSrc" class="img-thumbnail" width="150" />
     <div>
-        <p>@Dish.DishName - @Dish.Description</p> <div class="badge badge-info ">@Dish.Calories калорий</div>
+        <p>@Dish.DishName - @Dish.Description</p> 
+        <div class="badge badge-info ">@Dish.Calories калорий</div>
     </div>
 }
 @code {
@@ -16,6 +17,6 @@
     {
         get
         {
-            return $"https://localhost:44310/images/{Dish.Image}";
+            return $"https://localhost:5001/images/{Dish.Image}";
         }
     } }

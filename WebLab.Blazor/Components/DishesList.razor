@@ -11,12 +11,12 @@ else
             var i = 1;
             foreach (var dish in Dishes)
             {
-                <button type="button"
-                        class="list-group-item list-group-item-action
-@(SelectedId == dish.DishId ? "active" : "")"
-                        @onclick="@(e => Selected(e, dish.DishId))">
+                <button type="button" class="list-group-item list-group-item-action
+                    @(SelectedId == dish.DishId ? "active" : "")"
+                    @onclick="@(e => Selected(e, dish.DishId))">
                     @(i++) - @dish.DishName
                 </button>
+                  
             } }
     </div>
 }
@@ -32,4 +32,5 @@ else
     {
         SelectedId = id;
         SelectedObjectChanged.InvokeAsync(id);
-    } }
+    } 
+    }
